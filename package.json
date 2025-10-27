@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@azure/web-pubsub": "^1.2.0",
+    "@azure/web-pubsub-client": "^1.0.2"
+  }
+}
