@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <body>
+    <h3>Azure WebPubSub Test Client</h3>
+    <pre id="log">Connecting...</pre>
+    <script>
+      (async () => {
+        const log = document.getElementById('log');
+        const res = await fetch('http://127.0.0.1:8080/negotiate');
+        const { url } = await res.json();
+        log.textContent += '\nGot negotiate URL\n' + url;
+        const ws = new WebSocket(url);
+        ws.onopen = () => log.textContent += '\n✅ Connected';
+        ws.onmessage = e => log.textContent += '\n📩 ' + e.data;
+        ws.onerror = err => log.textContent += '\n❌ ' + err.message;
+        ws.onclose = () => log.textContent += '\n🔒 closed';
+      })();
+    </script>
+  </body>
+</html>
